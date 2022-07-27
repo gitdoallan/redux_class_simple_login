@@ -1,29 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-export class Welcome extends Component {
-  render() {
-    const { name, email } = this.props;
-    return (
-      <div>
-        Olá,
-        {' '}
-        {name}
-        . Seu e-mail é:
-        {' '}
-        {email}
-        .
-      </div>
-    );
-  }
+export default function Welcome() {
+  const { email, name } = useSelector((state) => state.user);
+  return (
+    <div>
+      Olá,
+      {' '}
+      {name}
+      . Seu e-mail é:
+      {' '}
+      {email}
+      .
+    </div>
+  );
 }
-
-const mapStateToProps = ({ user }) => user;
-
-Welcome.propTypes = {
-  name: propTypes.string.isRequired,
-  email: propTypes.string.isRequired,
-};
-
-export default connect(mapStateToProps)(Welcome);
